@@ -1,0 +1,42 @@
+{
+  "processes": [
+    {
+      "id": "6f4a9665-0b4c-4b43-bf4b-44cf04f78626",
+      "name": "Chair",
+      "startTime": 1622746844689,
+      "jobsCount": 5
+    }
+  ],
+  "jobs": [
+    {
+      "id": "5b70852a-7dde-4e06-a50e-883bff9f1c96",
+      "name": "Incredible Cotton Soap",
+      "status": "running",
+      "processId": "6f4a9665-0b4c-4b43-bf4b-44cf04f78626"
+    },
+    {
+      "id": "353386f1-862c-4b36-9265-295606651a7f",
+      "name": "Incredible Granite Towels",
+      "status": "running",
+      "processId": "6f4a9665-0b4c-4b43-bf4b-44cf04f78626"
+    },
+    {
+      "id": "4f81ed77-aab5-4fa1-aebb-b38a1661d99a",
+      "name": "Sleek Frozen Salad",
+      "status": "successed",
+      "processId": "6f4a9665-0b4c-4b43-bf4b-44cf04f78626"
+    },
+    {
+      "id": "4c1b7567-4fe4-4d58-93cb-0861e8061949",
+      "name": "Generic Soft Gloves",
+      "status": "running",
+      "processId": "6f4a9665-0b4c-4b43-bf4b-44cf04f78626"
+    },
+    {
+      "id": "3c0070b8-6123-4c97-81a6-87c56d5ecbc0",
+      "name": "Gorgeous Granite Pants",
+      "status": "failed",
+      "processId": "6f4a9665-0b4c-4b43-bf4b-44cf04f78626"
+    }
+  ]
+}
