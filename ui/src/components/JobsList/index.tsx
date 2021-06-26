@@ -1,4 +1,7 @@
 import { Table } from 'antd';
+import { useDispatch } from 'react-redux';
+import {fetchJobs, fetchProcess} from '../../store/actions';
+import { useEffect } from 'react';
 
 const columns = [
     { title: 'Name', dataIndex: 'name', key: 'name' },
@@ -44,7 +47,15 @@ const data = [
 ];
 
 export const JobsList = () =>
-    <Table
+{
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchJobs())
+        dispatch(fetchProcess())
+    } ,[dispatch])
+
+    return <Table
         columns={columns}
         expandable={{
             expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>,
@@ -52,3 +63,4 @@ export const JobsList = () =>
         }}
         dataSource={data}
     />
+}

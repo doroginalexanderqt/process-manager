@@ -1,18 +1,10 @@
-import { combineReducers } from 'redux';
-import { handleActions }  from 'redux-actions';
-import { example } from '../actions';
+import { combineReducers } from 'redux'
+import jobsReducer from './jobsReducer'
+import loadersReducer from './loadersReducer'
+import processesReducer from './processesReducer'
 
-const reducer = handleActions(
-    {
-        [example.toString()]: (
-            state,
-            { payload }
-        ) => {
-            return { ...state, example: state.example + payload.example };
-        }
-    },
-    { example: 123 }
-);
 export default combineReducers({
-    example: reducer
+    jobs: jobsReducer,
+    loaders: loadersReducer,
+    processes: processesReducer,
 })
