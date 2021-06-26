@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import { useDispatch } from 'react-redux';
-import {fetchJobs, fetchProcess} from '../../store/actions';
+import {fetchJobs, fetchProcesses} from '../../store/actions';
 import { useEffect } from 'react';
 
 const columns = [
@@ -52,7 +52,7 @@ export const JobsList = () =>
 
     useEffect(() => {
         dispatch(fetchJobs())
-        dispatch(fetchProcess())
+        dispatch(fetchProcesses())
     } ,[dispatch])
 
     return <Table

@@ -7,10 +7,10 @@ import { loaderValues } from '../../constantValues'
 import { Response } from './types'
 import { Job } from '../../types'
 
-const fetchJobsEpic: Epic = (action$, state$) => action$.pipe(
+const fetchJobsEpic: Epic = (action$) => action$.pipe(
     ofType(fetchJobs),
     switchMap(() =>
-        from(jobs.getJobs()
+        from(jobs.get()
             .then((response: Response<{ data: Job[] }>) => fetchJobsSucceed(response))
             .catch((e: Error) => fetchJobsFailed(e)))
             .pipe(

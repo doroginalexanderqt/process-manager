@@ -2,22 +2,22 @@ import { from } from 'rxjs'
 import { switchMap, startWith, endWith } from 'rxjs/operators'
 import { ofType, Epic } from 'redux-observable'
 import {
-    fetchProcess,
-    fetchProcessFailed,
-    fetchProcessSucceed,
+    fetchProcesses,
+    fetchProcessesFailed,
+    fetchProcessesSucceed,
     updateLoader
 } from '../actions'
-import { jobs } from '../../api'
+import { processes } from '../../api'
 import { loaderValues } from '../../constantValues'
 import { Response } from './types'
-import { Job } from '../../types'
+import { Process } from '../../types'
 
-const fetchProcessesEpic: Epic = (action$, state$) => action$.pipe(
-    ofType(fetchProcess),
+const fetchProcessesEpic: Epic = (action$) => action$.pipe(
+    ofType(fetchProcesses),
     switchMap(() =>
-        from(jobs.getJobs()
-            .then((response: Response<{ data: Job[] }>) => fetchProcessSucceed(response))
-            .catch((e: Error) => fetchProcessFailed(e)))
+        from(processes.get()
+            .then((response: Response<{ data: Process[] }>) => fetchProcessesSucceed(response))
+            .catch((e: Error) => fetchProcessesFailed(e)))
             .pipe(
                 startWith(updateLoader({ name: loaderValues.jobs, value: true })),
                 endWith(updateLoader({ name: loaderValues.jobs, value: false }))

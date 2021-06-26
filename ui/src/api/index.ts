@@ -1,7 +1,2 @@
-import jobs from './jobs'
-import processes from './processes'
-
-export {
-    jobs,
-    processes,
-}
+export * from './jobs'
+export * from './processes'

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { apiUrl } from '../constantValues'
 
-export default {
-    getProcesses: () => axios.get(`${apiUrl}/processes`),
+export const processes = {
+    get: () => axios.get(`${apiUrl}/processes`),
 }
