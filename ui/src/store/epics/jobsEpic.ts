@@ -5,7 +5,7 @@ import { fetchJobs, fetchJobsFailed, fetchJobsSucceed, updateLoader } from '../a
 import { jobs } from '../../api'
 import { loaderValues } from '../../constantValues'
 import { Response } from './types'
-import { Job } from '../../../../shared'
+import { Job } from '../../types'
 
 const fetchJobsEpic: Epic = (action$, state$) => action$.pipe(
     ofType(fetchJobs),

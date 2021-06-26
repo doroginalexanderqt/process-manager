@@ -10,7 +10,7 @@ import {
 import { jobs } from '../../api'
 import { loaderValues } from '../../constantValues'
 import { Response } from './types'
-import { Job } from '../../../../shared'
+import { Job } from '../../types'
 
 const fetchProcessesEpic: Epic = (action$, state$) => action$.pipe(
     ofType(fetchProcess),

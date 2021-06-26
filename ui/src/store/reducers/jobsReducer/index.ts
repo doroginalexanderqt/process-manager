@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { Job } from '../../../../../shared'
+import { Job } from '../../../types'
 import { fetchJobsFailed, fetchJobsSucceed } from '../../actions'
 import { Action } from '../types'
 

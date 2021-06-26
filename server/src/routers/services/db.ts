@@ -2,7 +2,7 @@ import fs from 'fs/promises'
 import faker from 'faker'
 import { sortBy } from 'lodash'
 
-import { Job, JobStatus, Process } from '../../../../shared'
+import { Job, JobStatus, Process } from '../../../types'
 import { getRandomInt } from './utils'
 
 type ReadDBShape = {

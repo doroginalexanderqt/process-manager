@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { Process } from '../../../../../shared'
+import { Process } from '../../../types'
 import { fetchProcessSucceed, fetchProcessFailed } from '../../actions'
 import { Action } from '../types';
 
