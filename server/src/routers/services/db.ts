@@ -4,7 +4,7 @@ import { sortBy } from 'lodash'
 
 import { Job, JobStatus, Process } from '../../../types'
 import { getRandomInt } from './utils'
-import moment from "moment";
+import moment from "moment"
 
 type ReadDBShape = {
     jobs: Job[]
@@ -24,7 +24,7 @@ export const getProcesses = async (sortField?: string)  => {
     return sortField ? sortBy(processes, sortField): processes
 }
 
-export const createProcess = async () => {
+export const createProcess = async (): Promise<Process> => {
     const newProcess: Process = {
         id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
@@ -40,7 +40,9 @@ export const createProcess = async () => {
 
     const oldProcesses = await getProcesses()
     const oldJobs = await getJobs()
-    return await writeDB({ processes: oldProcesses.concat(newProcess), jobs: oldJobs.concat(newJobs) })
+    await writeDB({ processes: oldProcesses.concat(newProcess), jobs: oldJobs.concat(newJobs) })
+
+    return newProcess
 }
 
 export const deleteProcess = async (idToRemove: string) => {

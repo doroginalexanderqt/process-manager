@@ -1,5 +1,5 @@
-import express from 'express';
-import { getProcesses, deleteProcess } from './services'
+import express from 'express'
+import {getProcesses, deleteProcess, createProcess} from './services'
 export const processRouter = express.Router()
 
 processRouter.get('/', async(req, res) => {
@@ -11,4 +11,22 @@ processRouter.get('/', async(req, res) => {
         res.status(500).send(e)
     }
 })
-processRouter.delete('/delete/:id', (req, res) => res.json(deleteProcess(req.params.id)))
+
+processRouter.delete('/:id',  async (req, res) => {
+    try {
+        await deleteProcess(req.params.id)
+
+        res.status(204).send()
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
+processRouter.post('/', async (req, res) => {
+    try {
+        const newProcess = await createProcess()
+
+        res.status(201).json(newProcess)
+    } catch (e) {
+        res.status(500).send(e)
+    }})
