@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions'
 import { updateLoader } from '../../actions'
 import { Action } from '../types'
 
-type LoaderPayload = { name: string, value: boolean }
+export type LoaderPayload = { name: string, value: boolean }
 
 export default handleActions<{ [loaderKey: string]: boolean }, LoaderPayload>(
     {
