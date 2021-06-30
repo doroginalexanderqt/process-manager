@@ -5,11 +5,11 @@ import { Action } from '../types'
 
 export default handleActions<{ data: Job[], error: Error | null}>(
     {
-        [(fetchJobsSucceed as Action).toString()]: (
+        [fetchJobsSucceed.toString()]: (
             state,
             { payload }
          ) => ({...state, data: payload.data }),
-        [(fetchJobsFailed as Action).toString()]: (
+        [fetchJobsFailed.toString()]: (
             state,
             { payload }
          ) => ({...state, error: payload.error }),
