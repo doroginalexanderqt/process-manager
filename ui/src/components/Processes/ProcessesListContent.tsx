@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Layout, Table, Spin } from 'antd'
 import { buildColumnDefinitions } from './columnDefinitions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchJobs, fetchProcesses } from '../../store/actions'
 import { Store } from '../../store/reducers'
-import { Job, Process } from '../../types'
 import JobsList from './JobsList'
-import { getProcessesWithJobs } from './utils'
 import { loaderValues } from '../../constantValues'
+import { getProcessesWithJobs } from '../../store/selectors'
+import { EnrichedProcess } from './types'
 
 const { Content } = Layout
 
 export const ProcessesListContent = () => {
     const [expandedRows, setExpandedRows] = useState<string[]>([])
-    // TODO: replace with reselect
-    const processes = useSelector<Store>(({ processes }) => processes.data) as Process[]
-    const jobs = useSelector<Store>(({ jobs }) => jobs.data) as Job[]
-    const loaders = useSelector<Store>(({ loaders }) => loaders) as { [loaderKey: string]: boolean }
+    const loaders = useSelector<Store, { [loaderKey: string]: boolean }>(({ loaders }) => loaders)
+
+    const processesWithJobs = useSelector<Store, EnrichedProcess[]>(getProcessesWithJobs)
 
     const isLoading = loaders[loaderValues.createProcess] || loaders[loaderValues.deleteProcess]
         || loaders[loaderValues.jobs] || loaders[loaderValues.processes]
@@ -29,9 +28,7 @@ export const ProcessesListContent = () => {
         dispatch(fetchProcesses())
     } ,[dispatch])
 
-    const processesWithJobs = getProcessesWithJobs(processes, jobs)
-
-    const columnDefinitions = buildColumnDefinitions(processesWithJobs)
+    const columnDefinitions = useMemo(() => buildColumnDefinitions(processesWithJobs), [processesWithJobs])
 
     return <Content>
         <Spin spinning={isLoading}>
