@@ -11,8 +11,7 @@ import { getProcessesWithJobs } from './utils'
 
 const { Content } = Layout
 
-
-const ProcessesListContent = () => {
+export const ProcessesListContent = () => {
     // TODO: replace with reselect
     const processes = useSelector<Store>(({ processes }) => processes.data) as Process[]
     const jobs = useSelector<Store>(({ jobs }) => jobs.data) as Job[]
@@ -36,4 +35,3 @@ const ProcessesListContent = () => {
         />
     </Content>
 }
-export default ProcessesListContent
