@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
 import { Process } from '../../../types'
-import { fetchProcessesSucceed, fetchProcessesFailed } from '../../actions'
+import { fetchProcessesSucceed, fetchProcessesFailed, createProcessFailed } from '../../actions'
 import { Action } from '../types';
 
 export default handleActions<{ data: Process[], error: Error | null}>(
@@ -10,6 +10,10 @@ export default handleActions<{ data: Process[], error: Error | null}>(
             { payload }
         ) => ({...state, data: payload.data }),
         [(fetchProcessesFailed as Action).toString()]: (
+            state,
+            { payload }
+        ) => ({...state, error: payload.error }),
+        [(createProcessFailed as Action).toString()]: (
             state,
             { payload }
         ) => ({...state, error: payload.error }),

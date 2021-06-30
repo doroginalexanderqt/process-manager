@@ -1,6 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { batchDispatchMiddleware } from 'redux-batched-actions';
 
 import rootEpic from './epics'
 
@@ -12,11 +13,12 @@ const composeEnhancers = process.env.NODE_ENV !== 'production'
     ? composeWithDevTools
     : compose
 
+const enhancers = [applyMiddleware(epicMiddleware, batchDispatchMiddleware)];
+
 const store = createStore(reducers,
-    composeEnhancers(
-        // @ts-ignore wrong ts type comes from createEpicMiddleware
-        applyMiddleware(epicMiddleware)
-    )
+// @ts-ignore
+
+        composeEnhancers(...enhancers)
 )
 
 epicMiddleware.run(rootEpic);

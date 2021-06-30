@@ -12,7 +12,7 @@ const fetchJobsEpic: Epic = (action$) => action$.pipe(
     switchMap(() =>
         from(jobs.get()
             .then((response: Response<{ data: Job[] }>) => fetchJobsSucceed(response))
-            .catch((e: Error) => fetchJobsFailed(e)))
+            .catch(fetchJobsFailed))
             .pipe(
                 startWith(updateLoader({ name: loaderValues.jobs, value: true })),
                 endWith(updateLoader({ name: loaderValues.jobs, value: false }))
