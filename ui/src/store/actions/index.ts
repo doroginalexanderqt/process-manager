@@ -8,6 +8,10 @@ export const createProcess = createAction('CREATE_PROCESS')
 export const createProcessSucceed = createAction('CREATE_PROCESS_SUCCEED')
 export const createProcessFailed = createAction('CREATE_PROCESS_FAILED')
 
+export const deleteProcess = createAction('DELETE_PROCESS')
+export const deleteProcessSucceed = createAction('DELETE_PROCESS_SUCCEED')
+export const deleteProcessFailed = createAction('DELETE_PROCESS_FAILED')
+
 export const fetchProcesses = createAction('FETCH_PROCESSES')
 export const fetchProcessesSucceed = createAction('FETCH_PROCESSES_SUCCEED')
 export const fetchProcessesFailed = createAction('FETCH_PROCESSES_FAILED')

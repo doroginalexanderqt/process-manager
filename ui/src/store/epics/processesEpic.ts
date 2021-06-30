@@ -9,6 +9,9 @@ import {
     fetchProcesses,
     fetchProcessesFailed,
     fetchProcessesSucceed,
+    deleteProcess,
+    deleteProcessSucceed,
+    deleteProcessFailed,
     updateLoader
 } from '../actions'
 import { processes } from '../../api'
@@ -27,7 +30,7 @@ const fetchProcessesEpic: Epic = (action$) => action$.pipe(
                 startWith(updateLoader({ name: loaderValues.processes, value: true })),
                 endWith(updateLoader({ name: loaderValues.processes, value: false }))
             ))
-);
+)
 
 const createProcessEpic: Epic = (action$) => action$.pipe(
     ofType(createProcess),
@@ -45,6 +48,24 @@ const createProcessEpic: Epic = (action$) => action$.pipe(
                     updateLoader({ name: loaderValues.createProcess, value: false })]
                 ))
             ))
-);
+)
 
-export default combineEpics(fetchProcessesEpic, createProcessEpic)
+const deleteProcessEpic: Epic = (action$) => action$.pipe(
+    ofType(deleteProcess),
+    switchMap(({ payload }) =>
+        from(processes.delete(payload)
+            .then((response: Response<{ data: Process[] }>) => batchActions([
+                deleteProcessSucceed(response),
+                fetchProcesses(),
+                fetchJobs(),
+            ]))
+            .catch(deleteProcessFailed))
+            .pipe(
+                startWith(updateLoader({ name: loaderValues.deleteProcess, value: true })),
+                endWith(batchActions([
+                    updateLoader({ name: loaderValues.deleteProcess, value: false })]
+                ))
+            ))
+)
+
+export default combineEpics(fetchProcessesEpic, createProcessEpic, deleteProcessEpic)
