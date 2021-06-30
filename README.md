@@ -1,6 +1,6 @@
-# Test-management
+# Process-management
 
-## Run Node.js server
+## Run Node.js Server
 1. `cd server`
 2. `yarn` (Note: Node.js > 16 is _**required**_!)
 3. `yarn start`
