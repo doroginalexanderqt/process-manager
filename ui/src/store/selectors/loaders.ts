@@ -5,3 +5,7 @@ export const getLoaders = createSelector(
     (state: Store) => state.loaders,
     loaders => loaders
 )
+export const getLoader = createSelector(
+    (state: Store, loaderKey: string) => state.loaders[loaderKey],
+    loader => loader
+)

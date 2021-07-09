@@ -1,11 +1,12 @@
 import { Button } from 'antd'
 import { useDispatch } from 'react-redux'
 import { Process } from '../../../types'
-import {deleteProcess} from "../../../store/actions";
+import { deleteProcess } from '../../../store/actions'
+import { useCallback } from "react"
 
 
-export const Action = (process: Process) => {
+export const Action = (processId: Process['id']) => {
     const dispatch = useDispatch()
-
-    return <Button type="primary" onClick={() => dispatch(deleteProcess(process.id))}>Delete</Button>
+    const handleClick = useCallback(() => dispatch(deleteProcess(processId)), [dispatch, processId])
+    return <Button type="primary" onClick={handleClick}>Delete</Button>
 }

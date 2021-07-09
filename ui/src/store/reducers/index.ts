@@ -5,7 +5,7 @@ import processesReducer from './processesReducer'
 import { Job, Process } from '../../types';
 
 export type Store = {
-    jobs: { data: Job[], error?: Error },
+    jobs: { data: Job[], error?: Error, search: string },
     processes: { data: Process[], error?: Error } ,
     loaders: { [loaderKey: string]: boolean }
 }

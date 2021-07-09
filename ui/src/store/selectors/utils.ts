@@ -2,14 +2,15 @@ import { countBy } from 'lodash'
 import { Job, JobStatus } from '../../types'
 
 export const getProcessStatus = (jobs: Job[]) => {
-    const { running, failed } = countBy(jobs, 'status')
+    const { succeed, running } = countBy(jobs, 'status')
 
-    if (failed > 0) {
-        return JobStatus.failed
-    }
     if (running > 0) {
         return JobStatus.running
     }
 
-    return JobStatus.succeed
+    if (succeed === jobs.length) {
+        return JobStatus.succeed
+    }
+
+    return JobStatus.failed
 }

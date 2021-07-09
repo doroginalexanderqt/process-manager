@@ -46,18 +46,5 @@ describe('processes selector', () => {
             status: JobStatus.running,
             name: ''
         })
-        const runningProcess = getProcessesWithJobs(cloneDeep(clonedStore))
-
-        expect(runningProcess[0].status).toEqual(JobStatus.running)
-
-        clonedStore.jobs.data.push({
-            id: 'jobWithFailedStatus',
-            processId: 'process1',
-            status: JobStatus.failed,
-            name: ''
-        })
-        const failedProcess = getProcessesWithJobs(cloneDeep(clonedStore))
-
-        expect(failedProcess[0].status).toEqual(JobStatus.failed)
     })
 })

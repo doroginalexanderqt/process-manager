@@ -5,6 +5,7 @@ import {
     createProcess,
     createProcessFailed,
     createProcessSucceed,
+    fetchEverything,
     fetchJobs,
     fetchProcesses,
     fetchProcessesFailed,
@@ -21,7 +22,7 @@ import { Process } from '../../types'
 import { batchActions } from 'redux-batched-actions'
 
 const fetchProcessesEpic: Epic = (action$) => action$.pipe(
-    ofType(fetchProcesses),
+    ofType(fetchProcesses, fetchEverything),
     switchMap(() =>
         from(processes.get()
             .then((response: Response<{ data: Process[] }>) => fetchProcessesSucceed(response))

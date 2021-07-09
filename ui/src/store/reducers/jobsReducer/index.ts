@@ -1,9 +1,9 @@
 import { handleActions } from 'redux-actions'
 import { Job } from '../../../types'
-import { fetchJobsFailed, fetchJobsSucceed } from '../../actions'
-import { Action } from '../types'
+import {fetchJobsFailed, fetchJobsSucceed, searchJob} from '../../actions'
 
-export default handleActions<{ data: Job[], error: Error | null}>(
+export default handleActions<{ data: Job[], error: Error | null, search: string }>(
+    // @ts-ignore FIXME
     {
         [fetchJobsSucceed.toString()]: (
             state,
@@ -13,6 +13,10 @@ export default handleActions<{ data: Job[], error: Error | null}>(
             state,
             { payload }
          ) => ({...state, error: payload.error }),
+        [searchJob.toString()]: (
+            state,
+            { payload }
+         ) => ({...state, search: payload }),
     },
-    { data: [], error: null }
+    { data: [], error: null, search: '' }
 )

@@ -17,3 +17,7 @@ export const fetchProcessesSucceed = createAction('FETCH_PROCESSES_SUCCEED')
 export const fetchProcessesFailed = createAction('FETCH_PROCESSES_FAILED')
 
 export const updateLoader = createAction('UPDATE_LOADER')
+
+export const fetchEverything = createAction('FETCH_EVERYTHING')
+
+export const searchJob = createAction('SEARCH_JOB')
